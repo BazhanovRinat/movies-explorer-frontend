@@ -1,0 +1,88 @@
+.popupMenu {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .popupMenu {
+        display: none;
+        justify-content: end;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+
+    }
+}
+
+.popupMenu__container {
+    background-color: #FFFFFF;
+    width: 520px;
+    height: 100%;
+}
+
+.popupMenu__close {
+    background-image: url(../../images/popupMenu__close.svg);
+    height: 22px;
+    width: 22px;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    position: relative;
+    margin-left: 100%;
+    margin-right: 22px;
+    top: 22px;
+}
+
+.popupMenu__link-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.popupMenu__link {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 28px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.popupMenu__link:hover {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #000000;
+}
+
+.popupMenu__link:active {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #000000;
+}
+
+.popupMenu__link:first-of-type {
+    margin-top: 159px;
+}
+
+.popupMenu__link-profile {
+    background-image: url(../../images/profile-white.svg);
+    width: 100px;
+    height: 32px;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    margin-top: 621px;
+    margin-bottom: 90px;
+}
