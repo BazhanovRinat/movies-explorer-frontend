@@ -3,7 +3,7 @@ import signDataLogo from '../../images/header__logo.svg';
 
 function Login() {
     return (
-        <div className="sign-data">
+        <section className="sign-data">
             <img src={signDataLogo} className="sign-data__logo" alt="Логотип"></img>
             <h2 className="sign-data__title">Рады видеть!</h2>
             <form className="sign-data__form">
@@ -18,7 +18,7 @@ function Login() {
             <p className="sign-data__text-under-submit ">Еще не зарегистрированы? <NavBar
                 name={"Регистрация"} path={"sign-up"} className={"sign-data__link-under-submit"} />
             </p>
-        </div>
+        </section>
     );
 }
 

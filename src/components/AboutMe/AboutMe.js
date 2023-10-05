@@ -3,7 +3,7 @@ import studensPhoto from '../../images/studentsPhoto.png';
 
 function AboutMe() {
     return (
-        <div className="aboutMe">
+        <section className="aboutMe">
             <h2 className="aboutMe__cup">Студент</h2>
             <div className="aboutMe__container">
                 <div className="aboutMe__container-info">
@@ -18,7 +18,7 @@ function AboutMe() {
                 </div>
                 <img className="aboutMe__container-image" src={studensPhoto} alt="Фотография студента"></img>
             </div>
-        </div>
+        </section>
     );
 }
 

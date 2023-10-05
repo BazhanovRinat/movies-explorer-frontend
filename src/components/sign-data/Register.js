@@ -3,7 +3,7 @@ import signDataLogo from '../../images/header__logo.svg';
 
 function Register() {
     return (
-        <div className="sign-data">
+        <section className="sign-data">
             <img src={signDataLogo} className="sign-data__logo" alt="Логотип"></img>
             <h2 className="sign-data__title">Добро пожаловать!</h2>
             <form className="sign-data__form">
@@ -22,7 +22,7 @@ function Register() {
                 name={"Войти"} path={"sign-in"} className={"sign-data__link-under-submit"} />
             </p>
 
-        </div>
+        </section>
     );
 }
 

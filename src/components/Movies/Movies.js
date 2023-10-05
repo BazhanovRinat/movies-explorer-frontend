@@ -3,7 +3,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function Movies() {
     return (
-        <div className="movies">
+        <section className="movies">
             <SearchForm />
             <div className="movies-switch__container">
                 <input className="movies__switch" id="switch" type="checkbox" />
@@ -12,7 +12,7 @@ function Movies() {
             </div>
             <MoviesCardList />
             <button className="movies__moreMovies-btn">Еще</button>
-        </div>
+        </section>
     );
 }
 
