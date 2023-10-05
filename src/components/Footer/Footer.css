@@ -4,6 +4,10 @@
     margin: 79px 70px 20px;
 }
 
+.footer_display-none {
+    display: none;
+}
+
 @media screen and (max-width: 1024px) {
     .footer {
         margin-right: 30px;
@@ -84,6 +88,11 @@
     text-decoration: none;
     font-size: 13px;
     font-weight: 400;
+    transition: 0.5s ease;
+}
+
+.footer__link-item:hover {
+    opacity: 0.7;
 }
 
 @media screen and (max-width: 480px) {

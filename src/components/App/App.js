@@ -14,11 +14,20 @@ import SavedMovies from "../SavedMovies/SavedMovies"
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isProfileMenuActive, setisProfileMenuActive] = useState(false)
+
+  function openPopupProfile() {
+    setisProfileMenuActive(!isProfileMenuActive)
+  }
+
+  function closePopup() {
+    setisProfileMenuActive(false)
+  }
 
   return (
     <div className="App">
-      <Header loggedIn={loggedIn} />
+      <Header loggedIn={loggedIn} openPopupProfile={openPopupProfile} />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/movies" element={<Movies />} />
@@ -30,7 +39,7 @@ function App() {
       </Routes>
       <Footer />
 
-      <PopupMenu />
+      <PopupMenu isPopupRender={isProfileMenuActive} closePopup={closePopup} />
     </div>
   );
 }

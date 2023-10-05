@@ -8,6 +8,12 @@
     }
 }
 
+@media screen and (max-width: 560px) {
+    .aboutMe {
+        margin: 0 15px;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .aboutMe {
         margin: 0 14px;

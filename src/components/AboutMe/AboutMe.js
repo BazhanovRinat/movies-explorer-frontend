@@ -14,7 +14,7 @@ function AboutMe() {
                         С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке,
                         начал заниматься фриланс-заказами и ушёл с постоянной работы.
                     </p>
-                    <Link className="aboutMe__container-info-link" to="https://github.com/BazhanovRinat">Github</Link>
+                    <Link  target="_blank" className="aboutMe__container-info-link" to="https://github.com/BazhanovRinat">Github</Link>
                 </div>
                 <img className="aboutMe__container-image" src={studensPhoto} alt="Фотография студента"></img>
             </div>

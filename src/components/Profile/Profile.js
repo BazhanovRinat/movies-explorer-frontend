@@ -2,7 +2,7 @@ import NavBar from '../NavBar/NavBar';
 
 function Profile() {
     return (
-        <section className="profile">
+        <main className="profile">
             <h2 className="profile__title">Привет, Виталий!</h2>
             <div className="profile__info">
                 <h3 className="profile__info-type">Имя</h3>
@@ -14,7 +14,7 @@ function Profile() {
             </div>
             <button className="profile__button">Редактировать</button>
             <NavBar name={"Выйти из аккаунта"} path={""} className={"profile__link"} />
-        </section>
+        </main>
     );
 }
 

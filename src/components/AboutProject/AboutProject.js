@@ -1,6 +1,9 @@
+import React, { useEffect } from 'react';
+
 function AboutProject() {
+
     return (
-        <section className="aboutProject">
+        <section className="aboutProject" id="aboutProject">
             <h2 className="aboutProject__title">О проекте</h2>
             <div className="aboutProject__container">
                 <div className="aboutProject__child-container">
