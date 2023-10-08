@@ -5,7 +5,7 @@ function Movies() {
     return (
         <main className="movies">
             <SearchForm />
-            <div className="movies-switch__container">
+            <div className="movies__switch-container">
                 <input className="movies__switch" id="switch" type="checkbox" />
                 <label className="movies__switch-active" for="switch"></label>
                 <label className="movies__switch-lable">Короткометражки</label>

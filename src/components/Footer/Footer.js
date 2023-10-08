@@ -6,7 +6,10 @@ function Footer() {
     const { pathname } = useLocation()
 
     return (
-        <footer className={`footer ${pathname === "/profile" ? "footer_display-none" : ""}`}>
+        <footer className={`footer ${pathname === "/profile" ||
+            pathname === "/404" ||
+            pathname === "/sign-up" ||
+            pathname === "/sign-in" ? "footer_display-none" : ""}`}>
             <p className="footer__text">Учебный проект Яндекс.Практикум х BeatFilm.</p>
             <div className="footer__container">
                 <p className="footer__copyright">&copy;&nbsp;{new Date().getFullYear()}</p>

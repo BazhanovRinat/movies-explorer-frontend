@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import NavBar from '../NavBar/NavBar';
 
 function PopupMenu({ isPopupRender, closePopup }) {
@@ -10,7 +11,9 @@ function PopupMenu({ isPopupRender, closePopup }) {
                     <NavBar name={"Главная"} path={""} className={"popupMenu__link"} />
                     <NavBar name={"Фильмы"} path={"movies"} className={"popupMenu__link"} />
                     <NavBar name={"Сохраненные фильмы"} path={"saved-movies"} className={"popupMenu__link"} />
-                    <NavBar name={""} path={"profile"} className={"popupMenu__link-profile"} />
+                    <Link className="popupMenu__profile-link" to="/profile">
+                        <button className="popupMenu__profile-link-image"></button>
+                    </Link>
                 </nav>
             </div>
         </div >

@@ -17,16 +17,6 @@ function MoviesCardList() {
             <MoviesCard />
             <MoviesCard />
             <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
         </section>
     );
 }

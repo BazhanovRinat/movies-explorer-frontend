@@ -8,19 +8,19 @@
     font-size: 140px;
     font-weight: 400;
     margin: 0;
-    margin-top: 246px;
+    margin-top: 250px;
 }
 
 @media screen and (max-width: 1024px) {
     .result404__title {
-        margin-top: 408px;
-        font-size: 80px;
+        margin-top: 412px;
     }
 }
 
 @media screen and (max-width: 480px) {
     .result404__title {
-        margin-top: 329px;
+        margin-top: 333px;
+        font-size: 80px;
     }
 }
 
@@ -28,7 +28,7 @@
     font-size: 16px;
     font-weight: 400;
     margin: 0;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 @media screen and (max-width: 480px) {
@@ -46,15 +46,23 @@
     color: #3456F3;
     text-decoration: none;
     transition: 0.5s ease;
+    margin-bottom: 60px;
 }
 
 .result404__link:hover {
     opacity: 0.7;
 }
 
+@media screen and (max-width: 1024px) {
+    .result404__link {
+        margin-bottom: 222px;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .result404__link {
-        margin-top: 284px;
+        margin-top: 287px;
         font-size: 12px;
+        margin-bottom: 30px;
     }
 }

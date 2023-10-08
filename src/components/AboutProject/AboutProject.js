@@ -23,7 +23,7 @@ function AboutProject() {
                     <p className="aboutProject__text-weeks">Back-end</p></div>
                 <div className="aboutProject__container-weeks">
                     <p className="aboutProject__four-week">4 недели</p>
-                    <p className="aboutProject__text-weeks">Fornt-end</p></div>
+                    <p className="aboutProject__text-weeks">Front-end</p></div>
             </div>
         </section>
     );

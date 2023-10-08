@@ -13,7 +13,7 @@
 
 .promo__container {
     margin-left: 70px;
-    margin-top: 75px;
+    margin-top: 71px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -55,6 +55,7 @@
         font-size: 29px;
         line-height: 38px;
         margin-bottom: 24px;
+        letter-spacing: -0.5px;
     }
 }
 
@@ -71,9 +72,10 @@
 @media screen and (max-width: 1024px) {
     .promo__subtitle {
         font-size: 13px;
-        margin-bottom: 92px;
+        margin-bottom: 94px;
         margin-right: auto;
         margin-left: auto;
+        width: 260px;
     }
 }
 
@@ -125,7 +127,7 @@
 
 @media screen and (max-width: 1024px) {
     .promo__image {
-        margin: 140px 229px 0;
+        margin: 143px 229px 0;
         height: 304px;
         width: 310px;
     }
