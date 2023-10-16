@@ -69,7 +69,6 @@
     border: none;
     background-color: #FFFFFF;
     cursor: pointer;
-    margin-top: 220px;
     font-size: 13px;
     font-weight: 400;
     cursor: pointer;
@@ -80,24 +79,6 @@
     opacity: 0.7;
 }
 
-/* .profile__button:active {
-    background-color: #F8F8F8;
-    color: #C2C2C2;
-} */
-
-@media screen and (max-width: 1024px) {
-    .profile__button {
-        margin-top: 214px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .profile__button {
-        margin-top: 379px;
-    }
-}
-
-
 .profile__link {
     margin-top: 16px;
     color: #FF3055;
@@ -105,21 +86,75 @@
     font-size: 13px;
     font-weight: 500;
     transition: 0.5s ease;
-    margin-bottom: 70px;
+}
+
+.profile__link:hover {
+    opacity: 0.7;
+}
+
+.profile__form {
+    margin-bottom: 220px;
 }
 
 @media screen and (max-width: 1024px) {
-    .profile__link {
+    .profile__form {
+        margin-bottom: 214px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile__form {
+        margin-bottom: 379px;
+    }
+}
+
+.profile__under-submit-container {
+    margin-bottom: 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 1024px) {
+    .profile__under-submit-container {
         margin-bottom: 269px;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .profile__link {
+    .profile__under-submit-container {
         margin-bottom: 40px;
     }
 }
 
-.profile__link:hover {
-    opacity: 0.7;
+.profile__input {
+    border: none;
+    width: 30%;
+    text-align: end;
+}
+
+.profile__form-submit {
+    width: 410px;
+    height: 45px;
+    border: none;
+    background-color: #3456F3;
+    color: white;
+    margin-top: 223px;
+    margin-bottom: 103px;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.profile__form-submit:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 480px) {
+    .profile__form-submit {
+        width: 260px;
+        margin-bottom: 59px;
+    }
+}
+
+.profile__form_margin {
+    margin-bottom: 0;
 }

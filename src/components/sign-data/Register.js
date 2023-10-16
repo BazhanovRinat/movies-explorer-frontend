@@ -1,22 +1,38 @@
 import NavBar from '../NavBar/NavBar';
 import signDataLogo from '../../images/header__logo.svg';
 import { Link } from "react-router-dom";
+import useForm from "../../hooks/useForm";
 
-function Register() {
+function Register({ onRegister }) {
+
+    const { values, handleChange, setValues } = useForm({});
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        onRegister(values, setValues)
+    }
+
     return (
         <main className="sign-data">
             <Link className="sign-data__logo-link" to={'/'}><img src={signDataLogo} className="sign-data__logo" alt="Логотип"></img></Link>
             <h1 className="sign-data__title">Добро пожаловать!</h1>
-            <form className="sign-data__form">
+            <form onSubmit={handleSubmit} className="sign-data__form">
+
                 <label className="sign-data__label">Имя</label>
-                <input placeholder="Имя" minLength={2} maxLength={30} required className="sign-data__input"   ></input>
+                <input onChange={handleChange} name="name" placeholder="Имя"
+                    minLength={2} maxLength={30} required className="sign-data__input"></input>
                 <span className="sign-data__input-error"></span>
+
                 <label className="sign-data__label">E-mail</label>
-                <input placeholder="E-mail" minLength={2} maxLength={30} required className="sign-data__input" type="email"></input>
+                <input onChange={handleChange} name="email" placeholder="E-mail"
+                    minLength={2} maxLength={30} required className="sign-data__input" type="email"></input>
                 <span className="sign-data__input-error"></span>
+
                 <label className="sign-data__label">Пароль</label>
-                <input placeholder="Пароль" minLength={2} maxLength={30} required className="sign-data__input" type="password"></input>
+                <input onChange={handleChange} name="password" placeholder="Пароль"
+                    minLength={2} maxLength={30} required className="sign-data__input" type="password"></input>
                 <span className="sign-data__input-error">Что-то пошло не так...</span>
+
                 <button className="sign-data__submit" type="submit">Зарегистрироваться</button>
             </form>
             <p className="sign-data__text-under-submit">Уже зарегистрированы? <NavBar

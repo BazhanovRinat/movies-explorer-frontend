@@ -1,19 +1,38 @@
+import React, { useState, useEffect, useContext } from 'react';
+import { mainApi } from "../../utils/MainApi";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import { useLocation } from "react-router-dom";
 
-function SavedMovies () {
+function Movies() {
+    const [movies, setMovies] = useState([]);
+
+    useEffect(() => {
+        mainApi.getMovies()
+            .then((data) => {
+                setMovies(data)
+            })
+            .catch((error) => {
+                console.log(`${error}`);
+            })
+
+    }, []);
+
+    function findMovie(filter, isShortMovies) {
+        let filteredMovies = movies.filter(({ nameRU }) => nameRU.toLowerCase().includes(filter.toLowerCase()));
+        console.log(filteredMovies)
+        if (isShortMovies === true) {
+            filteredMovies = filteredMovies.filter(({ duration }) => duration <= 40);
+        }
+        setMovies(filteredMovies);
+    }
+
     return (
         <main className="movies">
-            <SearchForm />
-            <div className="movies__switch-container">
-                <input className="movies__switch" id="switch" type="checkbox" />
-                <label className="movies__switch-active" for="switch"></label>
-                <label className="movies__switch-lable">Короткометражки</label>
-            </div>
-            <MoviesCardList />
-            <button className="movies__moreMovies-btn">Еще</button>
+            <SearchForm findMovie={findMovie} />
+            <MoviesCardList movies={movies} />
         </main>
     );
 }
 
-export default SavedMovies;
+export default Movies;

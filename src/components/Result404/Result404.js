@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 
+
 function Result404() {
+
+  // const goBack = () => {
+  //   window.history.back();
+  //   console.log("p")
+  // };
+
   return (
     <section className="result404">
       <div className="result404__container">
