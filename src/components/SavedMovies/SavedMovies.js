@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { mainApi } from "../../utils/MainApi";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import { useLocation } from "react-router-dom";
+
 
 function Movies() {
     const [movies, setMovies] = useState([]);

@@ -1,8 +1,5 @@
 import React from 'react';
 import NavBar from '../NavBar/NavBar';
-import header__logo from '../../images/header__logo.svg';
-import profileGreen from '../../images/profile-green.svg'
-import profileWhite from "../../images/profile-white.svg"
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 

@@ -59,13 +59,6 @@ function App() {
           console.log(`${error}`);
         })
 
-      //   api.getInitialCards()
-      //     .then((data) => {
-      //       setCards(data)
-      //     })
-      //     .catch((error) => {
-      //       console.log(`${error}`);
-      //     })
       tokenCheck();
     }
   }, [loggedIn])
@@ -79,8 +72,6 @@ function App() {
           if (res) {
             console.log(res)
             setLoggedIn(true);
-            // navigate("/", { replace: true })
-            // setEmail(res.email)
           }
         })
         .catch(err => {
@@ -90,24 +81,18 @@ function App() {
   }
 
   function handleUpdateUser(data) {
-    // setIsLoading(!isLoading)
     mainApi.setProfileInfo(data)
       .then((data) => {
         setCurrentUser(data)
-        // closeAllPopups()
       })
       .catch((error) => {
         console.log(`${error}`);
       })
-    // .finally(() => {
-    //   setIsLoading(false)
-    // })
   }
 
   function signOut() {
     localStorage.removeItem('token');
     setLoggedIn(false)
-    // setCurrentUser({});
   }
 
   function handleRegister(values, setValues) {
@@ -117,14 +102,10 @@ function App() {
           navigate('/movies', { replace: true })
           setIsPopupInfoTooltipOpen(true)
           SetisPopupCorret(true)
-          // setisPopupInfoTooltipOpen(true)
-          // SetisPopupCorret(true)
         }
       })
       .catch(err => {
         console.log(err)
-        // setisPopupInfoTooltipOpen(true)
-        // SetisPopupCorret(false)
       })
   }
 
@@ -140,21 +121,11 @@ function App() {
           setLoggedIn(true);
           setIsPopupInfoTooltipOpen(true)
           SetisPopupCorret(true)
-          // api.profileDataInstall()
-          //   .then((data) => {
-          //     setCurrentUser(data);
-          //   })
-          //   .catch((error) => {
-          //     console.log(error);
-          //   });
-
           navigate('/movies', { replace: true });
         }
       })
       .catch(err => {
         console.log(err);
-        // setisPopupInfoTooltipOpen(true);
-        // SetisPopupCorret(false);
       });
   }
 
@@ -167,9 +138,6 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/sign-up" element={<Register onRegister={handleRegister} />} />
           <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
-          {/* <Route path="/movies" element={<Movies />} /> */}
-          {/* <Route path="/saved-movies" element={<SavedMovies />} /> */}
-          {/* <Route path="/profile" element={<Profile signOut={signOut} />} /> */}
           <Route path="/movies" element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn} />} />
           <Route path="saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} />} />
           <Route path="/profile" element={
