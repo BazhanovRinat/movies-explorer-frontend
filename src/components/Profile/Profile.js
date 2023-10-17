@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from '../NavBar/NavBar';
 import useForm from "../../hooks/useForm";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
@@ -6,10 +6,11 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 function Profile(props) {
 
     const [profileChange, setProfileChange] = useState(false)
+    const { values, handleChange, setValues } = useForm({});
+    const [formValid, setFormValid] = useState(false);
+    const [formErr, setFormErr] = useState("");
 
     const profileData = React.useContext(CurrentUserContext)
-
-    const { values, handleChange, setValues } = useForm({});
 
     function changeProfile() {
         setProfileChange(true)
@@ -19,12 +20,25 @@ function Profile(props) {
     function handleSubmit(e) {
         e.preventDefault();
         props.onUpdateUser({
-          name: values.name,
-          email: values.email,
+            name: values.name,
+            email: values.email,
         });
         setProfileChange(false);
-        props.openPopupCorrect(); 
-      }
+        props.openPopupCorrect();
+    }
+
+    useEffect(() => {
+        if (profileChange) {
+            if (values.name === profileData.name && values.email === profileData.email) {
+                setFormErr("Одинаковые данные");
+                setFormValid(true)
+                
+            } else {
+                setFormErr("");
+                setFormValid(false)
+            }
+        }
+    }, [values.name, values.email, profileChange, profileData]);
 
     return (
         <main className="profile">
@@ -45,8 +59,11 @@ function Profile(props) {
                         className="profile__info-item profile__info-name profile__input" placeholder={"E-mail"}></input>
                         : <p className="profile__info-item profile__info-email">{profileData.email || "pochta@yandex.ru"}</p>}
                 </div>
+                {profileChange ? <span className="sign-data__input-error profile-data__input-error">
+                    {formErr}
+                </span> : ""}
                 {profileChange ? <button className="profile__form-submit"
-                    disabled={!profileChange || (values.name === profileData.name && values.email === profileData.email)}>Сохранить</button> : ""}
+                    disabled={formValid}>Сохранить</button> : ""}
             </form>
             {profileChange ? "" : <div className="profile__under-submit-container">
                 {profileChange ? "" : <button className="profile__button" onClick={changeProfile}>Редактировать</button>}

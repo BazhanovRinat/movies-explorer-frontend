@@ -51,27 +51,30 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      mainApi.profileDataInstall()
-        .then((data) => {
-          setCurrentUser(data)
-        })
-        .catch((error) => {
-          console.log(`${error}`);
-        })
-
-      tokenCheck();
+      const token = localStorage.getItem('token');
+      if (token) {
+        mainApi.setToken(token);
+        mainApi.profileDataInstall()
+          .then((data) => {
+            setCurrentUser(data);
+          })
+          .catch((error) => {
+            console.log(`${error}`);
+          });
+      }
     }
-  }, [loggedIn])
+    tokenCheck();
+}, [loggedIn]);
 
   function tokenCheck() {
     const token = localStorage.getItem('token');
-    console.log(token)
     if (token) {
       auth.getContent(token)
         .then((res) => {
           if (res) {
             console.log(res)
             setLoggedIn(true);
+            navigate("/movies", { replace: true })
           }
         })
         .catch(err => {
@@ -116,11 +119,10 @@ function App() {
     auth.authorize(values.email, values.password)
       .then((res) => {
         if (res.token) {
-          // SetisPopupCorret(true);
+          SetisPopupCorret(true);
           setValues({ email: '', password: '' });
           setLoggedIn(true);
           setIsPopupInfoTooltipOpen(true)
-          SetisPopupCorret(true)
           navigate('/movies', { replace: true });
         }
       })

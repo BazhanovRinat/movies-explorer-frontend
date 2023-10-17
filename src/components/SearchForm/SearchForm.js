@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import useForm from "../../hooks/useForm";
 
 function SearchForm({ findMovie, isShortMovies, handleCheckboxChange }) {
-    const { values, handleChange, setValues } = useForm({ searchForm: '' });
 
-    let searching = values.searchForm
+    const { values, handleChange, setValues } = useForm({ searchForm: '' });
 
     useEffect(() => {
         const SearchFormValueData = localStorage.getItem('searchFormValue');
@@ -18,8 +17,8 @@ function SearchForm({ findMovie, isShortMovies, handleCheckboxChange }) {
         if (values.searchForm === '') {
             console.log('Введите запрос');
         } else {
-            findMovie(searching, isShortMovies);
-            localStorage.setItem('searchFormValue', searching);
+            findMovie(values.searchForm, isShortMovies); 
+            localStorage.setItem('searchFormValue', values.searchForm);
         }
     }
 

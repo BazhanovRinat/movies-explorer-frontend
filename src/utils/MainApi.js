@@ -15,6 +15,10 @@ export default class MainApi {
         return Promise.reject(`Ошибка: ${res.status}`);
     }
 
+    setToken(token) {
+        this.headers['Authorization'] = `Bearer ${token}`;
+    }
+
     getMovies() {
         return this._request(`${this.url}/movies`, {
             method: 'GET',
@@ -57,12 +61,6 @@ export default class MainApi {
 }
 
 const token = localStorage.getItem('token');
-
-if (token) {
-    console.log('Токен:', token);
-} else {
-    console.log('Токен не найден');
-}
 
 export const mainApi = new MainApi({
     url: 'https://api.bazhanov.rinat.diplom.nomoredomainsrocks.ru',

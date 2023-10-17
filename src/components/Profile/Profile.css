@@ -94,6 +94,8 @@
 
 .profile__form {
     margin-bottom: 220px;
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width: 1024px) {
@@ -138,7 +140,6 @@
     border: none;
     background-color: #3456F3;
     color: white;
-    margin-top: 223px;
     margin-bottom: 103px;
     transition: 0.5s ease;
     cursor: pointer;
@@ -158,3 +159,15 @@
 .profile__form_margin {
     margin-bottom: 0;
 }
+
+.profile-data__input-error {
+    margin-top: 223px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile__form-submit:disabled {
+    background-color: #F8F8F8;
+    color: black;
+}
+
