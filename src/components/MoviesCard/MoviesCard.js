@@ -6,7 +6,7 @@ import buttonLikeImage from '../../images/button-like__image.svg'
 import { mainApi } from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function MoviesCard({ movie }) {
+function MoviesCard({ movie, savedMovies, openPopupError, updateMoviesList}) {
 
     const [isLiked, setIsLiked] = useState(false)
     const [likedMovies, setLikedMovies] = useState([]);
@@ -15,17 +15,14 @@ function MoviesCard({ movie }) {
     const profileData = React.useContext(CurrentUserContext)
 
     useEffect(() => {
-        mainApi.getMovies()
-            .then(data => {
-                const likedMovies = data.some(item => item.movieId === movie.id);
-                if (likedMovies) {
-                    setIsLiked(true);
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, [movie.id]);
+        if (savedMovies && savedMovies.length > 0) {
+          const likedMovies = savedMovies.some(item => item.movieId === movie.id);
+          if (likedMovies) {
+            setIsLiked(true);
+          }
+        }
+      }, [movie.id, savedMovies]);
+      
 
     function numberToTime(number) {
         const hours = Math.floor(number / 60);
@@ -59,6 +56,7 @@ function MoviesCard({ movie }) {
                 })
                 .catch((error) => {
                     console.log('Ошибка при добавлении фильма');
+                    openPopupError(true)
                 });
         } else {
             mainApi.getMovies()
@@ -72,6 +70,7 @@ function MoviesCard({ movie }) {
                 })
                 .catch((error) => {
                     console.log(error);
+                    openPopupError(true)
                 });
         }
     }
@@ -80,10 +79,12 @@ function MoviesCard({ movie }) {
         console.log(movie);
         mainApi.deleteMovie(movie._id)
             .then((res) => {
+                updateMoviesList(movie)
                 console.log('Фильм успешно удален');
             })
             .catch((error) => {
                 console.log('Ошибка при удалении фильма');
+                openPopupError(true)
             });
     }
 

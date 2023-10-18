@@ -7,21 +7,25 @@ function Login({ onLogin }) {
 
     const { values, handleChange, setValues } = useForm({});
     const [formValid, setFormValid] = useState(false);
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     function validateForm() {
-        const isFormValid = Object.values(values).every(value => value && value.length >= 2);
+        const isEmailValid = emailRegex.test(values.email);
+        const isFormValid = Object.values(values).every(value => value && value.length >= 2) && isEmailValid;
         setFormValid(isFormValid);
     }
 
-    function handleBlur(e) {
-        const { name, value } = e.target;
-        if (value.length < 2) {
-            e.target.setCustomValidity('Это поле должно содержать минимум 2 символа');
-        } else {
-            e.target.setCustomValidity('');
-        }
-        validateForm();
+function handleBlur(e) {
+    const { name, value } = e.target;
+    if (name === 'email' && !emailRegex.test(value)) {
+        e.target.setCustomValidity('Пожалуйста, введите корректный адрес электронной почты');
+    } else if (value.length < 2) {
+        e.target.setCustomValidity('Это поле должно содержать минимум 2 символа');
+    } else {
+        e.target.setCustomValidity('');
     }
+    validateForm();
+}
 
     const handleSubmit = (evt) => {
         evt.preventDefault();

@@ -3,39 +3,42 @@ import NavBar from '../NavBar/NavBar';
 import useForm from "../../hooks/useForm";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile(props) {
+const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-    const [profileChange, setProfileChange] = useState(false)
+function Profile(props) {
+    const [profileChange, setProfileChange] = useState(false);
     const { values, handleChange, setValues } = useForm({});
     const [formValid, setFormValid] = useState(false);
     const [formErr, setFormErr] = useState("");
 
-    const profileData = React.useContext(CurrentUserContext)
+    const profileData = React.useContext(CurrentUserContext);
 
     function changeProfile() {
-        setProfileChange(true)
+        setProfileChange(true);
         setValues({ name: profileData.name, email: profileData.email });
     }
 
     function handleSubmit(e) {
         e.preventDefault();
+        if (values.email && !emailRegex.test(values.email)) {
+            setFormErr("Введите корректный email");
+            return;
+        }
         props.onUpdateUser({
             name: values.name,
             email: values.email,
         });
         setProfileChange(false);
-        props.openPopupCorrect();
     }
 
     useEffect(() => {
         if (profileChange) {
             if (values.name === profileData.name && values.email === profileData.email) {
                 setFormErr("Одинаковые данные");
-                setFormValid(true)
-                
+                setFormValid(true);
             } else {
                 setFormErr("");
-                setFormValid(false)
+                setFormValid(false);
             }
         }
     }, [values.name, values.email, profileChange, profileData]);

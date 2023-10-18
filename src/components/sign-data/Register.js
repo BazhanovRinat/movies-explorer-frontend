@@ -7,6 +7,7 @@ import { useState } from "react";
 function Register({ onRegister }) {
     const { values, handleChange, setValues } = useForm({});
     const [formValid, setFormValid] = useState(false);
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     function validateForm() {
         const isFormValid = Object.values(values).every(value => value && value.length >= 2);
@@ -17,6 +18,8 @@ function Register({ onRegister }) {
         const { name, value } = evt.target;
         if (value.length < 2) {
             evt.target.setCustomValidity('Это поле должно содержать минимум 2 символа');
+        } else if (name === "email" && !emailRegex.test(value)) {
+            evt.target.setCustomValidity('Введите корректный email');
         } else {
             evt.target.setCustomValidity('');
         }

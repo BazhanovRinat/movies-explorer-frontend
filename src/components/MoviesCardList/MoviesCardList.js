@@ -1,7 +1,8 @@
 import React from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies, isLoading }) {
+function MoviesCardList({ movies, isLoading, savedMovies, openPopupError, updateMoviesList }) {
+
     return (
         <section className="moviesCardList">
             {isLoading ? (
@@ -10,7 +11,8 @@ function MoviesCardList({ movies, isLoading }) {
                 </div>
             ) : (
                 movies && movies.map((movie) => (
-                    <MoviesCard key={movie.id} movie={movie} />
+                    <MoviesCard key={movie.id} movie={movie} savedMovies={savedMovies} openPopupError={openPopupError}
+                        updateMoviesList={updateMoviesList} />
                 ))
             )}
         </section>

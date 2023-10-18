@@ -47,6 +47,7 @@ function App() {
 
   function openPopupError() {
     setIsPopupInfoTooltipOpen(true)
+    SetisPopupCorret(false)
   }
 
   useEffect(() => {
@@ -64,7 +65,7 @@ function App() {
       }
     }
     tokenCheck();
-}, [loggedIn]);
+  }, [loggedIn]);
 
   function tokenCheck() {
     const token = localStorage.getItem('token');
@@ -87,14 +88,18 @@ function App() {
     mainApi.setProfileInfo(data)
       .then((data) => {
         setCurrentUser(data)
+        setIsPopupInfoTooltipOpen(true)
+        SetisPopupCorret(true)
       })
       .catch((error) => {
         console.log(`${error}`);
+        setIsPopupInfoTooltipOpen(true)
+        SetisPopupCorret(false)
       })
   }
 
   function signOut() {
-    localStorage.removeItem('token');
+    localStorage.clear();
     setLoggedIn(false)
   }
 
@@ -102,6 +107,7 @@ function App() {
     auth.register(values.email, values.password, values.name)
       .then((res) => {
         if (res) {
+          setLoggedIn(true);
           navigate('/movies', { replace: true })
           setIsPopupInfoTooltipOpen(true)
           SetisPopupCorret(true)
@@ -109,6 +115,8 @@ function App() {
       })
       .catch(err => {
         console.log(err)
+        setIsPopupInfoTooltipOpen(true)
+        SetisPopupCorret(false)
       })
   }
 
@@ -119,15 +127,19 @@ function App() {
     auth.authorize(values.email, values.password)
       .then((res) => {
         if (res.token) {
+            mainApi.setToken(res.token);
           SetisPopupCorret(true);
           setValues({ email: '', password: '' });
           setLoggedIn(true);
           setIsPopupInfoTooltipOpen(true)
+          SetisPopupCorret(true)
           navigate('/movies', { replace: true });
         }
       })
       .catch(err => {
         console.log(err);
+        setIsPopupInfoTooltipOpen(true)
+        SetisPopupCorret(false)
       });
   }
 
@@ -140,8 +152,8 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/sign-up" element={<Register onRegister={handleRegister} />} />
           <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
-          <Route path="/movies" element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn} />} />
-          <Route path="saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} />} />
+          <Route path="/movies" element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn} openPopupError={openPopupError} />} />
+          <Route path="saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} openPopupError={openPopupError} />} />
           <Route path="/profile" element={
             <ProtectedRouteElement
               element={Profile}

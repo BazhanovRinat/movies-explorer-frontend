@@ -1,11 +1,12 @@
 import React from 'react';
 import NavBar from '../NavBar/NavBar';
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Header(props) {
 
     const { pathname } = useLocation()
+
 
     return (
         <header className={`header ${pathname === '/' ? "" : "header_white"} ${pathname === "/404" ||
@@ -16,12 +17,20 @@ function Header(props) {
             {props.loggedIn ? (
                 <>
                     <nav className="header__container header__container_display-none">
-                        <NavBar name={"Фильмы"} path={"movies"} className={
-                            `header__authorized-link ${pathname === '/' ? "" : "header_black-text"}`
-                        } />
-                        <NavBar name={"Сохраненные фильмы"} path={"saved-movies"} className={
-                            `header__authorized-link ${pathname === '/' ? "" : "header_black-text"}`
-                        } />
+                        <NavLink
+                            to="/movies"
+                            className={`header__authorized-link ${pathname === '/movies' ? 'active-link' : ''}
+                            ${pathname === '/' ? "" : "header_black-text"}`}
+                        >
+                            Фильмы
+                        </NavLink>
+                        <NavLink
+                            to="/saved-movies"
+                            className={`header__authorized-link ${pathname === '/saved-movies' ? 'active-link' : ''}
+                            ${pathname === '/' ? "" : "header_black-text"}`}
+                        >
+                            Сохраненные фильмы
+                        </NavLink>
                     </nav>
 
                 </>
