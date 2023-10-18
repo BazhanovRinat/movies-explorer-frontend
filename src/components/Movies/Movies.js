@@ -10,7 +10,7 @@ function Movies({ openPopupError }) {
     const [visibleMovies, setVisibleMovies] = useState([]);
     const [maxVisibleMovies, setMaxVisibleMovies] = useState(16);
     const [searched, setSearched] = useState(false);
-    const [isShortMovies, setIsShortMovies] = useState(localStorage.getItem('isShortMovies'));
+    const [isShortMovies, setIsShortMovies] = useState(localStorage.getItem('isShortMovies')) || false
     const [savedMovies, setSavedMovies] = useState([])
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
