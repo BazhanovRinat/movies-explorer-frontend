@@ -36,7 +36,9 @@ function Movies({ openPopupError }) {
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('isShortMovies', isShortMovies.toString());
+        if (isShortMovies !== null) {
+            localStorage.setItem('isShortMovies', isShortMovies.toString());
+        }
     }, [isShortMovies]);
 
     useEffect(() => {
