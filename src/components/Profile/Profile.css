@@ -169,5 +169,6 @@
 .profile__form-submit:disabled {
     background-color: #F8F8F8;
     color: black;
+    cursor: default;
 }
 

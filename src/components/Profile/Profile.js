@@ -7,11 +7,30 @@ const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 function Profile(props) {
     const [profileChange, setProfileChange] = useState(false);
-    const { values, handleChange, setValues } = useForm({});
+    const { values, setValues } = useForm({});
     const [formValid, setFormValid] = useState(false);
     const [formErr, setFormErr] = useState("");
 
     const profileData = React.useContext(CurrentUserContext);
+
+    function isEmailValid(email) {
+        return emailRegex.test(email);
+    }
+
+    function isNameValid(name) {
+        return typeof name === 'string' && name.length >= 2;
+    }
+
+    function validateForm(email, name) {
+        const isEmail = isEmailValid(email);
+        const isName = isNameValid(name)
+        return isEmail && isName;
+    }
+
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setValues({ ...values, [name]: value });
+    }
 
     function changeProfile() {
         setProfileChange(true);
@@ -32,6 +51,11 @@ function Profile(props) {
     }
 
     useEffect(() => {
+        const isFormValid = validateForm(values.email, values.name);
+        setFormValid(isFormValid);
+    }, [values.email, values.name]);
+
+    useEffect(() => {
         if (profileChange) {
             if (values.name === profileData.name && values.email === profileData.email) {
                 setFormErr("Одинаковые данные");
@@ -40,6 +64,14 @@ function Profile(props) {
                 setFormErr("");
                 setFormValid(false);
             }
+        }
+
+        if(!emailRegex.test(values.email)) {
+            setFormErr("Некорректная почта");
+            setFormValid(true);
+        } else {
+            setFormErr("");
+            setFormValid(false);
         }
     }, [values.name, values.email, profileChange, profileData]);
 
@@ -57,7 +89,7 @@ function Profile(props) {
                 </div>
                 <div className="profile__info">
                     <h3 className="profile__info-type">E-mail</h3>
-                    {profileChange ? <input onChange={handleChange} value={values.email || ""}
+                    {profileChange ? <input onChange={handleChange} value={values.email || ""} type="email"
                         name="email" maxLength={30} minLength={2} required
                         className="profile__info-item profile__info-name profile__input" placeholder={"E-mail"}></input>
                         : <p className="profile__info-item profile__info-email">{profileData.email || "pochta@yandex.ru"}</p>}

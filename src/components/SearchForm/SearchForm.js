@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import useForm from "../../hooks/useForm";
+import { useLocation } from 'react-router-dom';
 
 function SearchForm({ findMovie, isShortMovies, handleCheckboxChange }) {
 
     const { values, handleChange, setValues } = useForm({ searchForm: '' });
+    const location = useLocation();
 
     useEffect(() => {
         const SearchFormValueData = localStorage.getItem('searchFormValue');
-        if (SearchFormValueData) {
+        if (SearchFormValueData && location.pathname !== '/saved-movies') {
             setValues({ searchForm: SearchFormValueData });
         }
-    }, []);
+    }, [location]);
 
     function handleSubmit(e) {
         e.preventDefault();
         if (values.searchForm === '') {
             console.log('Введите запрос');
         } else {
-            findMovie(values.searchForm, isShortMovies); 
+            findMovie(values.searchForm); 
             localStorage.setItem('searchFormValue', values.searchForm);
         }
     }

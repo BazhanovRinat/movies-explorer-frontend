@@ -1,35 +1,52 @@
 import NavBar from '../NavBar/NavBar';
 import { Link } from "react-router-dom";
 import useForm from "../../hooks/useForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Login({ onLogin }) {
 
-    const { values, handleChange, setValues } = useForm({});
+    const { values, setValues } = useForm({});
     const [formValid, setFormValid] = useState(false);
+    const [emailError, setEmailError] = useState('');
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-    function validateForm() {
-        const isEmailValid = emailRegex.test(values.email);
-        const isFormValid = Object.values(values).every(value => value && value.length >= 2) && isEmailValid;
+    function isEmailValid(email) {
+        const isValid = emailRegex.test(email);
+        if (!isValid) {
+            setEmailError('Некорректный email');
+        } else {
+            setEmailError('');
+        }
+        return isValid;
+    }
+
+    function isPasswordValid(password) {
+        return typeof password === 'string' && password.length >= 2;
+    }
+
+    function validateForm(email, password) {
+        const isEmail = isEmailValid(email);
+        const isPassword = isPasswordValid(password);
+        return isEmail && isPassword;
+    }
+
+    useEffect(() => {
+        const isFormValid = validateForm(values.email, values.password);
         setFormValid(isFormValid);
+    }, [values.email, values.password]);
+
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setValues({ ...values, [name]: value });
+        if (name === 'email') {
+            isEmailValid(value);
+        }
     }
 
-function handleBlur(e) {
-    const { name, value } = e.target;
-    if (name === 'email' && !emailRegex.test(value)) {
-        e.target.setCustomValidity('Пожалуйста, введите корректный адрес электронной почты');
-    } else if (value.length < 2) {
-        e.target.setCustomValidity('Это поле должно содержать минимум 2 символа');
-    } else {
-        e.target.setCustomValidity('');
-    }
-    validateForm();
-}
-
-    const handleSubmit = (evt) => {
+    function handleSubmit(evt) {
         evt.preventDefault();
-        onLogin(values, setValues)
+        isEmailValid(values.email)
+        onLogin(values, setValues);
     }
 
 
@@ -41,13 +58,14 @@ function handleBlur(e) {
 
                 <label className="sign-data__label">E-mail</label>
                 <input placeholder="E-mail" minLength={2} maxLength={30} required className="sign-data__input" type="email"
-                    onChange={handleChange} onBlur={handleBlur} name="email"></input>
-                <span className="sign-data__input-error">{document.querySelector('input[name="email"]') &&
-                    document.querySelector('input[name="email"]').validationMessage}</span>
-
+                    onChange={handleChange} name="email"></input>
+                <span className="sign-data__input-error">
+                    {emailError || (document.querySelector('input[name="email"]') &&
+                        document.querySelector('input[name="email"]').validationMessage)}
+                </span>
                 <label className="sign-data__label">Пароль</label>
                 <input placeholder="Пароль" minLength={2} maxLength={30} required className="sign-data__input" type="password"
-                    onChange={handleChange} onBlur={handleBlur} name="password"
+                    onChange={handleChange} name="password"
                 ></input>
                 <span className="sign-data__input-error">
                     {document.querySelector('input[name="password"]') && document.querySelector('input[name="password"]').validationMessage}

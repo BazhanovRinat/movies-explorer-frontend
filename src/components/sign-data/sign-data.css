@@ -121,6 +121,7 @@
 .sign-data__submit:disabled {
     background-color: #F8F8F8;
     color: black;
+    cursor: default;
 }
 
 @media screen and (max-width: 480px) {

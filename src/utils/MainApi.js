@@ -64,6 +64,7 @@ const token = localStorage.getItem('token');
 
 export const mainApi = new MainApi({
     url: 'https://api.bazhanov.rinat.diplom.nomoredomainsrocks.ru',
+    // url: 'http://localhost:3001/',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
