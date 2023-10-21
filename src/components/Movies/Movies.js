@@ -9,18 +9,36 @@ function Movies({ openPopupError }) {
     const [renderMovies, setRenderMovies] = useState([]);
     const [allMovies, setAllMovies] = useState([]);
     const [shortMovies, setShortMovies] = useState([]);
-    const [maxVisibleMovies, setMaxVisibleMovies] = useState(16);
+    const [maxVisibleMovies, setMaxVisibleMovies] = useState(() => {
+        if (window.innerWidth <= 749) {
+            return 5;
+        } else if (window.innerWidth <= 1024) {
+            return 8;
+        } else if (window.innerWidth <= 1149) {
+            return 15;
+        } else {
+            return 16;
+        }
+    });
     const [savedMovies, setSavedMovies] = useState([])
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-    const [usersMovies, setUsersMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false);
 
     const [searched, setSearched] = useState(false);
-    const [extaSearched, setExtraSearched] = useState(false)
 
     const [isShortMovies, setIsShortMovies] = useState(localStorage.getItem('isShortMovies')) || false
 
-    const [startMaxMovies, setStartMaxMovies] = useState(16)
+    const defaultMaxVisibleMovies = (() => {
+        if (window.innerWidth <= 749) {
+            return 5;
+        } else if (window.innerWidth <= 1024) {
+            return 8;
+        } else if (window.innerWidth <= 1149) {
+            return 15;
+        } else {
+            return 16;
+        }
+    })();
 
     useEffect(() => {
         function handleResize() {
@@ -50,29 +68,21 @@ function Movies({ openPopupError }) {
     }, [isShortMovies]);
 
     useEffect(() => {
-        setUsersMovies(JSON.parse(localStorage.getItem('allMovies')));
-        if (usersMovies) {
+        const storedMovies = JSON.parse(localStorage.getItem('allMovies'));
+        if (storedMovies) {
             setSearched(true);
-            let filteredMovies;
-            if (isShortMovies) {
-                filteredMovies = usersMovies.filter(({ duration }) => duration <= 40);
-            } else {
-                filteredMovies = usersMovies;
-            }
+            setAllMovies(storedMovies);
 
-            if (screenWidth <= 1149) {
-                setStartMaxMovies(15);
+            if (isShortMovies) {
+                const shortMovies = storedMovies.filter(({ duration }) => duration <= 40);
+                setShortMovies(shortMovies);
+                setRenderMovies(shortMovies);
+            } else {
+                setShortMovies([]);
+                setRenderMovies(storedMovies);
             }
-            if (screenWidth <= 1024) {
-                setStartMaxMovies(8);
-            }
-            if (screenWidth <= 749) {
-                setStartMaxMovies(5);
-            }
-            const updatedRenderMovies = filteredMovies.slice(0, startMaxMovies);
-            setRenderMovies(updatedRenderMovies);
         }
-    }, [isShortMovies, maxVisibleMovies])
+    }, [isShortMovies]);
 
     useEffect(() => {
         mainApi.getMovies()
@@ -85,12 +95,9 @@ function Movies({ openPopupError }) {
             });
     }, [isShortMovies]);
 
-    useEffect(() => {
-        console.log(isShortMovies)
-    }, [isShortMovies]);
-
     function findMovie(filter) {
         setIsLoading(true);
+        setMaxVisibleMovies(defaultMaxVisibleMovies);
         moviesApi.getMovies()
             .then((data) => {
                 let filteredMovies = data.filter(({ nameRU }) => nameRU.toLowerCase().includes(filter.toLowerCase()));
@@ -104,18 +111,7 @@ function Movies({ openPopupError }) {
                     setRenderMovies(shortMovies)
                 }
 
-                if (screenWidth <= 1149) {
-                    setMaxVisibleMovies(15);
-                }
-                if (screenWidth <= 1024) {
-                    setMaxVisibleMovies(8);
-                }
-                if (screenWidth <= 749) {
-                    setMaxVisibleMovies(5);
-                }
-
                 setSearched(true);
-                setExtraSearched(true)
             })
             .catch((error) => {
                 console.log(`${error}`);
@@ -143,8 +139,22 @@ function Movies({ openPopupError }) {
         if (screenWidth <= 1025) {
             cardsToAdd = 2;
         }
-        setMaxVisibleMovies((currentMaxVisibleMovies) => currentMaxVisibleMovies + cardsToAdd);
-        setStartMaxMovies(startMaxMovies + cardsToAdd);
+
+        const newMaxVisibleMovies = maxVisibleMovies + cardsToAdd;
+
+        if (isShortMovies) {
+            if (newMaxVisibleMovies >= shortMovies.length) {
+                setMaxVisibleMovies(shortMovies.length);
+            } else {
+                setMaxVisibleMovies(newMaxVisibleMovies);
+            }
+        } else {
+            if (newMaxVisibleMovies >= allMovies.length) {
+                setMaxVisibleMovies(allMovies.length);
+            } else {
+                setMaxVisibleMovies(newMaxVisibleMovies);
+            }
+        }
     }
 
     function updateVisibleMovies() {
@@ -158,7 +168,7 @@ function Movies({ openPopupError }) {
     }
 
     useEffect(() => {
-        if (searched && extaSearched) {
+        if (searched) {
             const updatedRenderMovies = updateVisibleMovies();
             setRenderMovies(updatedRenderMovies);
         }
@@ -166,29 +176,30 @@ function Movies({ openPopupError }) {
 
     return (
         <main className="movies">
-        <SearchForm findMovie={findMovie} handleCheckboxChange={handleCheckboxChange} isShortMovies={isShortMovies} />
-        {isLoading ? (
-            <div className="preloader">
-                <span className="loader"></span>
-            </div>
-        ) : (
-            <>
-                {searched && extaSearched && renderMovies.length === 0 ? (
-                    <p>Фильм не найден</p>
-                ) : (
-                    <>
-                        {searched && <MoviesCardList movies={renderMovies} savedMovies={savedMovies} openPopupError={openPopupError} />}
-                        {searched && usersMovies && (
-                            (isShortMovies && renderMovies.length < usersMovies.filter(({ duration }) => duration <= 40).length) ||
-                            (!isShortMovies && renderMovies.length < usersMovies.length)
-                        ) && (
-                            <button className="movies__moreMovies-btn" onClick={loadMoreMovies}>Еще</button>
-                        )}
-                    </>
-                )}
-            </>
-        )}
-    </main>
+            <SearchForm findMovie={findMovie} handleCheckboxChange={handleCheckboxChange} isShortMovies={isShortMovies} />
+            {isLoading ? (
+                <div className="preloader">
+                    <span className="loader"></span>
+                </div>
+            ) : (
+                <>
+                    {searched && renderMovies.length === 0 ? (
+                        <p>Ничего не найдено</p>
+                    ) : (
+                        <>
+                            {searched && <MoviesCardList movies={renderMovies} savedMovies={savedMovies} openPopupError={openPopupError} />}
+                            <button
+                                className="movies__moreMovies-btn"
+                                onClick={loadMoreMovies}
+                                style={{ display: maxVisibleMovies < (isShortMovies ? shortMovies.length : allMovies.length) ? 'block' : 'none' }}
+                            >
+                                Еще
+                            </button>
+                        </>
+                    )}
+                </>
+            )}
+        </main>
     );
 }
 

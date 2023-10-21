@@ -19,8 +19,10 @@ function SearchForm({ findMovie, isShortMovies, handleCheckboxChange }) {
         if (values.searchForm === '') {
             console.log('Введите запрос');
         } else {
-            findMovie(values.searchForm); 
-            localStorage.setItem('searchFormValue', values.searchForm);
+            if (location.pathname !== '/saved-movies') {
+                localStorage.setItem('searchFormValue', values.searchForm);
+            }
+            findMovie(values.searchForm);
         }
     }
 
