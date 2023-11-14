@@ -4,7 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { mainApi } from "../../utils/MainApi";
 
-function Movies({ openPopupError }) {
+function Movies({ openPopupError, handleUpdateUsersMovies }) {
 
     const [renderMovies, setRenderMovies] = useState([]);
     const [allMovies, setAllMovies] = useState([]);
@@ -84,16 +84,16 @@ function Movies({ openPopupError }) {
         }
     }, [isShortMovies]);
 
-    useEffect(() => {
-        mainApi.getMovies()
-            .then((data) => {
-                setSavedMovies(data);
-            })
-            .catch((err) => {
-                console.log(err);
-                openPopupError(true);
-            });
-    }, [isShortMovies]);
+    // useEffect(() => {
+    //     mainApi.getMovies()
+    //         .then((data) => {
+    //             setSavedMovies(data);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //             openPopupError(true);
+    //         });
+    // }, [isShortMovies]);
 
     function findMovie(filter) {
         setIsLoading(true);
@@ -187,7 +187,8 @@ function Movies({ openPopupError }) {
                         <p>Ничего не найдено</p>
                     ) : (
                         <>
-                            {searched && <MoviesCardList movies={renderMovies} savedMovies={savedMovies} openPopupError={openPopupError} />}
+                            {searched && <MoviesCardList movies={renderMovies} savedMovies={savedMovies} openPopupError={openPopupError}
+                                handleUpdateUsersMovies={handleUpdateUsersMovies} />}
                             <button
                                 className="movies__moreMovies-btn"
                                 onClick={loadMoreMovies}
