@@ -1,0 +1,228 @@
+.aboutProject {
+    margin-right: 70px;
+    margin-left: 70px;
+}
+
+@media screen and (max-width: 1024px) {
+    .aboutProject {
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .aboutProject {
+        margin-right: 18px;
+        margin-left: 18px;
+        margin-bottom: 69px;
+    }
+}
+
+.aboutProject__title {
+    border-bottom: 1px solid black;
+    margin: 0;
+    margin-top: 108px;
+    padding-bottom: 23px;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -1.1px;
+}
+
+@media screen and (max-width: 1024px) {
+    .aboutProject__title {
+        margin-top: 92px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .aboutProject__title {
+        font-size: 18px;
+        padding-bottom: 28px;
+        margin-top: 72px;
+        letter-spacing: -0.7px;
+    }
+}
+
+.aboutProject__container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 70px;
+    margin-bottom: 110px;
+}
+
+@media screen and (max-width: 1024px) {
+    .aboutProject__container {
+        margin-bottom: 92px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .aboutProject__container {
+        flex-direction: column;
+        margin-top: 64px;
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .aboutProject__container_row-480p {
+        flex-direction: row;
+        margin-top: 57px;
+    }
+}
+
+.aboutProject__child-container {
+    margin-right: 40px;
+    width: 550px;
+}
+
+@media screen and (max-width: 1024px) {
+    .aboutProject__child-container {
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .aboutProject__child-container {
+        width: auto;
+        margin-right: 0;
+        margin-top: 56px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .aboutProject__child-container:first-of-type {
+        margin-top: 0;
+    }
+}
+
+.aboutProject__child-container:last-of-type {
+    margin-right: 0;
+}
+
+.aboutProject__container-week {
+    width: 20%;
+}
+
+@media screen and (max-width: 480px) {
+    .aboutProject__container-week {
+        width: 43%;
+    }
+}
+
+.aboutProject__container-weeks {
+    width: 80%;
+}
+
+.aboutProject__title-container {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.77px;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 480px) {
+    .aboutProject__title-container {
+        font-size: 18px;
+        line-height: 18px;
+    }
+}
+
+.aboutProject__subtitle {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    margin-top: 26px;
+}
+
+@media screen and (max-width: 1024px) {
+    .aboutProject__subtitle {
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .aboutProject__subtitle {
+        font-size: 11px;
+        line-height: 18px;
+        margin-top: 19px;
+    }
+}
+
+.aboutProject__one-week {
+    background-color: #2BE080;
+    text-align: center;
+    padding: 9px 0;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .aboutProject__one-week {
+        font-size: 14px;
+        padding-left: 4px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .aboutProject__one-week {
+        font-size: 11px;
+        padding: 11px 0;
+    }
+}
+
+.aboutProject__four-week {
+    background-color: #F2F2F2;
+    text-align: center;
+    padding: 9px 0;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+@media screen and (max-width: 1024px) {
+    .aboutProject__four-week {
+        font-size: 14px;
+        letter-spacing: 0;
+        padding-left: 4px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .aboutProject__four-week {
+        font-size: 11px;
+        padding: 11px 0;
+    }
+}
+
+.aboutProject__text-weeks {
+    text-align: center;
+    color: #A0A0A0;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 500;
+    margin: 0;
+    margin-top: 16px;
+}
+
+@media screen and (max-width: 1024px) {
+    .aboutProject__text-weeks {
+        padding-left: 5px;
+        letter-spacing: -0.5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .aboutProject__text-weeks {
+        font-size: 11px;
+        margin-top: 7px;
+        padding-left: 0;
+    }
+}

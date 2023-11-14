@@ -1,0 +1,174 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile__title {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    margin-top: 82px;
+}
+
+@media screen and (max-width: 1024px) {
+    .profile__title {
+        margin-top: 236px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile__title {
+        margin-top: 74px;
+    }
+}
+
+
+.profile__info {
+    margin-top: 123px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 16px;
+    width: 410px;
+}
+
+@media screen and (max-width: 1024px) {
+    .profile__info {
+        margin-top: 96px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile__info {
+        width: 260px;
+        margin-top: 82px;
+    }
+}
+
+.profile__info:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-top: 17px;
+}
+
+.profile__info-type {
+    font-size: 11px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.profile__info-item {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.profile__button {
+    border: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.profile__button:hover {
+    opacity: 0.7;
+}
+
+.profile__link {
+    margin-top: 16px;
+    color: #FF3055;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.5s ease;
+}
+
+.profile__link:hover {
+    opacity: 0.7;
+}
+
+.profile__form {
+    margin-bottom: 220px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 1024px) {
+    .profile__form {
+        margin-bottom: 214px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile__form {
+        margin-bottom: 379px;
+    }
+}
+
+.profile__under-submit-container {
+    margin-bottom: 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 1024px) {
+    .profile__under-submit-container {
+        margin-bottom: 269px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile__under-submit-container {
+        margin-bottom: 40px;
+    }
+}
+
+.profile__input {
+    border: none;
+    width: 30%;
+    text-align: end;
+}
+
+.profile__form-submit {
+    width: 410px;
+    height: 45px;
+    border: none;
+    background-color: #3456F3;
+    color: white;
+    margin-bottom: 103px;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.profile__form-submit:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 480px) {
+    .profile__form-submit {
+        width: 260px;
+        margin-bottom: 59px;
+    }
+}
+
+.profile__form_margin {
+    margin-bottom: 0;
+}
+
+.profile-data__input-error {
+    margin-top: 223px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile__form-submit:disabled {
+    background-color: #F8F8F8;
+    color: black;
+    cursor: default;
+}
+

@@ -1,0 +1,192 @@
+.sign-data {
+    max-width: 396px;
+    min-width: 260px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 70px;
+}
+
+@media screen and (max-width: 1024px) {
+    .sign-data {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 232px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sign-data {
+        margin-right: 30px;
+        margin-left: 30px;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 56px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .sign-data__logo-link {
+        align-self: center;
+    }
+}
+
+.sign-data__logo-button {
+    width: 38px;
+    height: 38px;
+    background-image: url(../../images/header__logo.svg);
+    cursor: pointer;
+    transition: 0.5s ease;
+    border: none;
+    background-color: #FFFFFF;
+}
+
+.sign-data__logo-button:hover {
+    opacity: 0.7;
+}
+
+.sign-data__title {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    margin-top: 37px;
+}
+
+@media screen and (max-width: 480px) {
+    .sign-data__title {
+        align-self: center;
+        margin-top: 47px;
+    }
+}
+
+.sign-data__form {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 480px) {
+    .sign-data__form {
+        margin-top: 82px;
+    }
+}
+
+.sign-data__label {
+    color: #A0A0A0;
+    font-size: 10px;
+    font-weight: 400;
+    margin-top: 19px;
+}
+
+.sign-data__label:first-of-type {
+    margin-top: 0;
+}
+
+.sign-data__input {
+    font-size: 14px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 10px;
+    margin-top: 5px;
+}
+
+.sign-data__input:focus {
+    border-bottom: 1px solid #3456F3;
+}
+
+.sign-data__input-error {
+    color: #FF3055;
+    font-size: 10px;
+    font-weight: 400;
+    margin-top: 6px;
+}
+
+.sign-data__submit {
+    background-color: #3456F3;
+    border: none;
+    color: #FFFFFF;
+    border-radius: 3px;
+    height: 45px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 134px;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.sign-data__submit:disabled {
+    background-color: #F8F8F8;
+    color: black;
+    cursor: default;
+}
+
+@media screen and (max-width: 480px) {
+    .sign-data__submit {
+        font-size: 12px;
+        margin-top: 221px;
+    }
+}
+
+.sign-data__submit:active {
+    background-color: #F8F8F8;
+    color: #C2C2C2;
+}
+
+.sign-data__submit:hover {
+    opacity: 0.8;
+}
+
+.sign-data__text-under-submit {
+    color: #A0A0A0;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 18px;
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+@media screen and (max-width: 1024px) {
+    .sign-data__text-under-submit {
+        font-size: 12px;
+        margin-bottom: 232px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sign-data__text-under-submit {
+        font-size: 12px;
+        margin-bottom: 30px;
+    }
+}
+
+.sign-data__link-under-submit {
+    color: #3456F3;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: 0.5s ease;
+}
+
+@media screen and (max-width: 480px) {
+    .sign-data__link-under-submit {
+        font-size: 12px;
+    }
+}
+
+.sign-data__link-under-submit:hover {
+    opacity: 0.7;
+}
+
+.sign-data__login-submit {
+    margin-top: 216px;
+}
+
+@media screen and (max-width: 480px) {
+    .sign-data__login-submit {
+        margin-top: 301px;
+    }
+}
