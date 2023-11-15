@@ -1,0 +1,126 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    margin: 79px 70px 20px;
+    margin-top: 0;
+    padding-top: 79px;
+}
+
+.footer_display-none {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .footer {
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .footer {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+.footer__text {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E8E8E8;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+    color: #A0A0A0;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__text {
+        font-size: 12px;
+    }
+}
+
+.footer__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__container {
+        flex-direction: column-reverse;
+        margin-top: 30px;
+    }
+}
+
+.footer__copyright {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__copyright {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 12px;
+    }
+}
+
+.footer__links {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__links {
+        flex-direction: column;
+    }
+}
+
+.footer__link {
+    list-style-type: none;
+    margin-right: 20px;
+}
+
+.footer__link:last-of-type {
+    margin-right: 0;
+}
+
+.footer__link-item {
+    color: #000000;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    transition: 0.5s ease;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__link-item {
+        font-size: 12px;
+    }
+}
+
+
+.footer__link-item:hover {
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__link {
+        margin-bottom: 10px;
+        text-align: center;
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .footer__link:last-of-type {
+        margin-bottom: 0;
+    }
+}

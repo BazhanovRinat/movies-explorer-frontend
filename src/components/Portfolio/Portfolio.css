@@ -1,0 +1,131 @@
+.portfolio {
+    margin: 0 70px;
+}
+
+@media screen and (max-width: 1024px) {
+    .portfolio {
+        margin: 0 50px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .portfolio {
+        margin: 0 14px;
+    }
+}
+
+.portfolio__title {
+    margin-top: 101px;
+    margin-bottom: 50px;
+    color: #A0A0A0;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 1024px) {
+    .portfolio__title {
+        margin-top: 91px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .portfolio__title {
+        margin-top: 70px;
+        margin-bottom: 40px;
+        font-size: 14px;
+    }
+}
+
+.portfolio__link-contrainer {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 19px;
+    margin-top: 20px;
+    align-items: center;
+    transition: 0.5s ease;
+}
+
+.portfolio__link-contrainer:hover {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.portfolio__link-contrainer:first-of-type {
+    margin-top: 0;
+}
+
+.portfolio__link-contrainer:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 125px;
+}
+
+@media screen and (max-width: 1024px) {
+    .portfolio__link-contrainer:last-of-type {
+        margin-bottom: 90px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .portfolio__link-contrainer:last-of-type {
+        margin-bottom: 70px;
+    }
+}
+
+.portfolio__text-link {
+    font-size: 30px;
+    line-height: 50px;
+    font-weight: 400;
+    color: #000000;
+    margin: 0;
+    letter-spacing: -1.1px;
+}
+
+@media screen and (max-width: 1024px) {
+    .portfolio__text-link {
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .portfolio__text-link {
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: -0.7px;
+    }
+}
+
+.portfolio__arrow-link {
+    height: 26px;
+    width: 19px;
+    background-image: url(../../images/portfolio__arrow.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: #FFFFFF;
+    padding: 0;
+    margin: 0;
+    margin-right: 5px;
+    margin-bottom: 1px;
+}
+
+@media screen and (max-width: 1024px) {
+    .portfolio__arrow-link {
+        height: 26px;
+        width: 17px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .portfolio__arrow-link {
+        height: 26px;
+        width: 11px;
+    }
+}
+
+.portfolio__arrow-link {}

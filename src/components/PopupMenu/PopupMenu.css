@@ -1,0 +1,112 @@
+.popupMenu {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .popupMenu {
+        justify-content: end;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .popupMenu_render {
+        display: flex
+    }
+}
+
+.popupMenu__container {
+    background-color: #FFFFFF;
+    width: 520px;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.popupMenu__close {
+    background-image: url(../../images/popupMenu__close.svg);
+    align-self: end;
+    background-color: initial;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0;
+    cursor: pointer;
+    height: 32px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 21px;
+    top: 21px;
+    transition: .5s;
+    width: 32px;
+}
+
+@media screen and (max-width: 480px) {
+    .popupMenu__close {
+        right: 13px;
+        top: 13px;
+    }
+}
+
+.popupMenu__close:hover {
+    opacity: 0.8;
+}
+
+.popupMenu__link-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.popupMenu__link {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 28px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.popupMenu__link:hover {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #000000;
+}
+
+.popupMenu__link:active {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #000000;
+}
+
+.popupMenu__link:first-of-type {
+    margin-top: 142px;
+}
+
+.popupMenu__profile-link {}
+
+.popupMenu__profile-link-image {
+    background-image: url(../../images/profile-white.svg);
+    width: 100px;
+    height: 32px;
+    margin-top: 630px;
+    margin-bottom: 90px;
+    background-position: center;
+    border: none;
+    background-color: #FFFFFF;
+}
+
+@media screen and (max-width: 480px) {
+    .popupMenu__profile-link-image {
+        margin-top: 445px;
+        margin-bottom: 46px;
+    }
+}
