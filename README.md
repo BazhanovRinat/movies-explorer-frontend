@@ -1,2 +1,2 @@
-Ссылка на проект: https://bazhanovrinat.github.io/movies-explorer-frontend/
+Ссылка на проект: https://bazhanovrinat.github.io/
 
