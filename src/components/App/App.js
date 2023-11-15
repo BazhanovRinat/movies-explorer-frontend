@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext"
+import { UsersMovies } from "../../contexts/UsersMovies.js";
 
 
 import Header from '../Header/Header'
@@ -26,6 +27,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [isPopupInfoTooltipOpen, setIsPopupInfoTooltipOpen] = useState(false)
   const [isPopupCorret, SetisPopupCorret] = useState(false)
+  const [usersMovies, setUsersMovies] = useState([])
 
   const { pathname } = useLocation();
 
@@ -51,20 +53,20 @@ function App() {
   }
 
   useEffect(() => {
-    if (loggedIn) {
-      const token = localStorage.getItem('token');
-      if (token) {
-        mainApi.setToken(token);
-        mainApi.profileDataInstall()
-          .then((data) => {
-            setCurrentUser(data);
-          })
-          .catch((error) => {
-            console.log(`${error}`);
-          });
-      }
-    }
-    tokenCheck();
+    // if (loggedIn) {
+    //   const token = localStorage.getItem('token');
+    //   if (token) {
+    //     mainApi.setToken(token);
+    //     mainApi.profileDataInstall()
+    //       .then((data) => {
+    //         setCurrentUser(data);
+    //       })
+    //       .catch((error) => {
+    //         console.log(`${error}`);
+    //       });
+    //   }
+    // }
+    // tokenCheck();
   }, [loggedIn]);
 
   function tokenCheck() {
@@ -85,17 +87,22 @@ function App() {
   }
 
   function handleUpdateUser(data) {
-    mainApi.setProfileInfo(data)
-      .then((data) => {
-        setCurrentUser(data)
-        setIsPopupInfoTooltipOpen(true)
-        SetisPopupCorret(true)
-      })
-      .catch((error) => {
-        console.log(`${error}`);
-        setIsPopupInfoTooltipOpen(true)
-        SetisPopupCorret(false)
-      })
+    // mainApi.setProfileInfo(data)
+    //   .then((data) => {
+    //     setCurrentUser(data)
+    //     setIsPopupInfoTooltipOpen(true)
+    //     SetisPopupCorret(true)
+    //   })
+    //   .catch((error) => {
+    //     console.log(`${error}`);
+    //     setIsPopupInfoTooltipOpen(true)
+    //     SetisPopupCorret(false)
+    //   })
+    setCurrentUser(data)
+  }
+
+  function handleUpdateUsersMovies(data) {
+    setUsersMovies(data)
   }
 
   function signOut() {
@@ -104,72 +111,87 @@ function App() {
   }
 
   function handleRegister(values, setValues) {
-    auth.register(values.email, values.password, values.name)
-      .then((res) => {
-        if (res) {
-          setLoggedIn(true);
-          navigate('/movies', { replace: true })
-          setIsPopupInfoTooltipOpen(true)
-          SetisPopupCorret(true)
-        }
-      })
-      .catch(err => {
-        console.log(err)
-        setIsPopupInfoTooltipOpen(true)
-        SetisPopupCorret(false)
-      })
+    // auth.register(values.email, values.password, values.name)
+    //   .then((res) => {
+    //     if (res) {
+    //       setLoggedIn(true);
+    //       navigate('/movies', { replace: true })
+    //       setIsPopupInfoTooltipOpen(true)
+    //       SetisPopupCorret(true)
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //     setIsPopupInfoTooltipOpen(true)
+    //     SetisPopupCorret(false)
+    //   })
+    setLoggedIn(true);
+    navigate('/movies', { replace: true })
+    setIsPopupInfoTooltipOpen(true)
+    SetisPopupCorret(true)
   }
 
   function handleLogin(values, setValues) {
     if (!values.email || !values.password) {
       return;
     }
-    auth.authorize(values.email, values.password)
-      .then((res) => {
-        if (res.token) {
-            mainApi.setToken(res.token);
-          SetisPopupCorret(true);
-          setValues({ email: '', password: '' });
-          setLoggedIn(true);
-          setIsPopupInfoTooltipOpen(true)
-          SetisPopupCorret(true)
-          navigate('/movies', { replace: true });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        setIsPopupInfoTooltipOpen(true)
-        SetisPopupCorret(false)
-      });
+    // auth.authorize(values.email, values.password)
+    //   .then((res) => {
+    //     if (res.token) {
+    //         mainApi.setToken(res.token);
+    //       SetisPopupCorret(true);
+    //       setValues({ email: '', password: '' });
+    //       setLoggedIn(true);
+    //       setIsPopupInfoTooltipOpen(true)
+    //       SetisPopupCorret(true)
+    //       navigate('/movies', { replace: true });
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //     setIsPopupInfoTooltipOpen(true)
+    //     SetisPopupCorret(false)
+    //   });
+    SetisPopupCorret(true);
+    setValues({ email: '', password: '' });
+    setLoggedIn(true);
+    setIsPopupInfoTooltipOpen(true)
+    navigate('/movies', { replace: true });
   }
 
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
-        {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' || pathname === '/profile' ?
-          <Header loggedIn={loggedIn} openPopupProfile={openPopupProfile} /> : ''}
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/sign-up" element={<Register onRegister={handleRegister} />} />
-          <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
-          <Route path="/movies" element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn} openPopupError={openPopupError} />} />
-          <Route path="saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} openPopupError={openPopupError} />} />
-          <Route path="/profile" element={
-            <ProtectedRouteElement
-              element={Profile}
-              signOut={signOut}
-              loggedIn={loggedIn}
-              onUpdateUser={handleUpdateUser}
-              openPopupCorrect={openPopupCorrect}
-              openPopupError={openPopupError}
-            />
-          } />
-          <Route path="/*" element={<Result404 />} />
-        </Routes>
-        {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' ? <Footer /> : ''}
+        <UsersMovies.Provider value={usersMovies}>
+          {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' || pathname === '/profile' ?
+            <Header loggedIn={loggedIn} openPopupProfile={openPopupProfile} /> : ''}
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/sign-up" element={<Register onRegister={handleRegister} />} />
+            <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
+            <Route path="/movies" element={<ProtectedRouteElement element={Movies} 
+            loggedIn={loggedIn} 
+            openPopupError={openPopupError} 
+            handleUpdateUsersMovies={handleUpdateUsersMovies}/>} />
+            <Route path="saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} openPopupError={openPopupError} 
+            handleUpdateUsersMovies={handleUpdateUsersMovies}/>} />
+            <Route path="/profile" element={
+              <ProtectedRouteElement
+                element={Profile}
+                signOut={signOut}
+                loggedIn={loggedIn}
+                onUpdateUser={handleUpdateUser}
+                openPopupCorrect={openPopupCorrect}
+                openPopupError={openPopupError}
+              />
+            } />
+            <Route path="/*" element={<Result404 />} />
+          </Routes>
+          {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' ? <Footer /> : ''}
 
-        <PopupMenu isPopupRender={isProfileMenuActive} closePopup={closePopup} />
-        <InfoTooltip isOpen={isPopupInfoTooltipOpen} onClose={closePopup} isPopupCorret={isPopupCorret} />
+          <PopupMenu isPopupRender={isProfileMenuActive} closePopup={closePopup} />
+          <InfoTooltip isOpen={isPopupInfoTooltipOpen} onClose={closePopup} isPopupCorret={isPopupCorret} />
+        </UsersMovies.Provider>
       </CurrentUserContext.Provider>
     </div>
   );

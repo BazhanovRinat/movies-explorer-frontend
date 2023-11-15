@@ -77,7 +77,7 @@ function Profile(props) {
 
     return (
         <main className="profile">
-            <h1 className="profile__title">Привет, {profileData.name || 'Виталий'}!</h1>
+            <h1 className="profile__title">Привет, {profileData.name || 'Пользователь'}!</h1>
             <form className={profileChange ? "profile__form profile__form_margin" : "profile__form"} onSubmit={handleSubmit}>
                 <div className="profile__info">
                     <h2 className="profile__info-type">Имя</h2>
@@ -85,7 +85,7 @@ function Profile(props) {
                         className="profile__info-item profile__info-name profile__input"
                         placeholder={"Имя"} value={values.name || ""}>
                     </input>
-                        : <p className="profile__info-item profile__info-name">{profileData.name || 'Виталий'}</p>}
+                        : <p className="profile__info-item profile__info-name">{profileData.name || 'Пользователь'}</p>}
                 </div>
                 <div className="profile__info">
                     <h3 className="profile__info-type">E-mail</h3>

@@ -1,7 +1,7 @@
 import React from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies, isLoading, savedMovies, openPopupError, updateMoviesList }) {
+function MoviesCardList({ movies, isLoading, savedMovies, openPopupError, updateMoviesList, handleUpdateUsersMovies }) {
 
     return (
         <section className="moviesCardList">
@@ -12,7 +12,7 @@ function MoviesCardList({ movies, isLoading, savedMovies, openPopupError, update
             ) : (
                 movies && movies.map((movie) => (
                     <MoviesCard key={movie.id} movie={movie} savedMovies={savedMovies} openPopupError={openPopupError}
-                        updateMoviesList={updateMoviesList} />
+                        updateMoviesList={updateMoviesList} handleUpdateUsersMovies={handleUpdateUsersMovies}/>
                 ))
             )}
         </section>

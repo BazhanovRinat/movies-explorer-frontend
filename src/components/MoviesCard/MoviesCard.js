@@ -5,24 +5,27 @@ import React, { useEffect, useState } from "react";
 import buttonLikeImage from '../../images/button-like__image.svg'
 import { mainApi } from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { UsersMovies } from "../../contexts/UsersMovies";
 
-function MoviesCard({ movie, savedMovies, openPopupError, updateMoviesList}) {
+function MoviesCard({ movie, savedMovies, openPopupError, updateMoviesList, handleUpdateUsersMovies }) {
 
     const [isLiked, setIsLiked] = useState(false)
     const [likedMovies, setLikedMovies] = useState([]);
     const [movieDelete, setMovieDelete] = useState([])
 
+    const addedMovies = React.useContext(UsersMovies);
+
     const profileData = React.useContext(CurrentUserContext)
 
     useEffect(() => {
         if (savedMovies && savedMovies.length > 0) {
-          const likedMovies = savedMovies.some(item => item.movieId === movie.id);
-          if (likedMovies) {
-            setIsLiked(true);
-          }
+            const likedMovies = savedMovies.some(item => item.movieId === movie.id);
+            if (likedMovies) {
+                setIsLiked(true);
+            }
         }
-      }, [movie.id, savedMovies]);
-      
+    }, [movie.id, savedMovies]);
+
 
     function numberToTime(number) {
         const hours = Math.floor(number / 60);
@@ -49,43 +52,51 @@ function MoviesCard({ movie, savedMovies, openPopupError, updateMoviesList}) {
         }
 
         if (!isLiked) {
-            setLikedMovies(prevLikedMovies => [...prevLikedMovies, movieDublicate]);
-            mainApi.addMovie(movieDublicate)
-                .then((res) => {
-                    console.log('Фильм успешно добавлен');
-                })
-                .catch((error) => {
-                    console.log('Ошибка при добавлении фильма');
-                    openPopupError(true)
-                });
+            //setLikedMovies(prevLikedMovies => [...prevLikedMovies, movieDublicate]);
+            handleUpdateUsersMovies(prevLikedMovies => [...prevLikedMovies, movieDublicate])
+            // mainApi.addMovie(movieDublicate)
+            // .then((res) => {
+            //     console.log('Фильм успешно добавлен');
+            // })
+            // .catch((error) => {
+            //     console.log('Ошибка при добавлении фильма');
+            //     openPopupError(true)
+            // });
         } else {
-            mainApi.getMovies()
-                .then(async (data) => {
-                    const isMovieInData = data.find(item => item.movieId === movieDublicate.movieId);
-                    if (isMovieInData) {
-                        await mainApi.deleteMovie(isMovieInData._id);
-                        setLikedMovies(prevLikedMovies => prevLikedMovies.filter(item => item.movieId !== isMovieInData.movieId));
-                        console.log('Фильм успешно удален');
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                    openPopupError(true)
-                });
+            // mainApi.getMovies()
+            //     .then(async (data) => {
+            //         const isMovieInData = data.find(item => item.movieId === movieDublicate.movieId);
+            //         if (isMovieInData) {
+            //             await mainApi.deleteMovie(isMovieInData._id);
+            //             setLikedMovies(prevLikedMovies => prevLikedMovies.filter(item => item.movieId !== isMovieInData.movieId));
+            //             console.log('Фильм успешно удален');
+            //         }
+            //     })
+            //     .catch((error) => {
+            //         console.log(error);
+            //         openPopupError(true)
+            //     });
+            const isMovieInData = addedMovies.find(item => item.movieId === movieDublicate.movieId);
+            if (isMovieInData) {
+                handleUpdateUsersMovies(prevLikedMovies => prevLikedMovies.filter(item => item.movieId !== isMovieInData.movieId));
+                console.log('Фильм успешно удален');
+            }
         }
     }
 
     function deleteMovie(movie) {
-        console.log(movie);
-        mainApi.deleteMovie(movie._id)
-            .then((res) => {
-                updateMoviesList(movie)
-                console.log('Фильм успешно удален');
-            })
-            .catch((error) => {
-                console.log('Ошибка при удалении фильма');
-                openPopupError(true)
-            });
+        // console.log(movie);
+        // mainApi.deleteMovie(movie._id)
+        //     .then((res) => {
+        //         updateMoviesList(movie)
+        //         console.log('Фильм успешно удален');
+        //     })
+        //     .catch((error) => {
+        //         console.log('Ошибка при удалении фильма');
+        //         openPopupError(true)
+        //     });
+            const updatedMovies = addedMovies.filter(item => item.movieId !== movie.movieId);
+            handleUpdateUsersMovies(updatedMovies);
     }
 
     const { pathname } = useLocation()
