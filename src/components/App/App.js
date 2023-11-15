@@ -163,19 +163,23 @@ function App() {
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
         <UsersMovies.Provider value={usersMovies}>
-          {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' || pathname === '/profile' ?
+          {pathname === '/'
+            || pathname === '/movies'
+            || pathname === '/saved-movies'
+            || pathname === '/profile'
+            || pathname === '/movies-explorer-frontend' ?
             <Header loggedIn={loggedIn} openPopupProfile={openPopupProfile} /> : ''}
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="movies-explorer-frontend" element={<Main />} />
             <Route path="/sign-up" element={<Register onRegister={handleRegister} />} />
             <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
-            <Route path="/movies" element={<ProtectedRouteElement element={Movies} 
-            loggedIn={loggedIn} 
-            openPopupError={openPopupError} 
-            handleUpdateUsersMovies={handleUpdateUsersMovies}/>} />
-            <Route path="saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} openPopupError={openPopupError} 
-            handleUpdateUsersMovies={handleUpdateUsersMovies}/>} />
+            <Route path="/movies" element={<ProtectedRouteElement element={Movies}
+              loggedIn={loggedIn}
+              openPopupError={openPopupError}
+              handleUpdateUsersMovies={handleUpdateUsersMovies} />} />
+            <Route path="saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} openPopupError={openPopupError}
+              handleUpdateUsersMovies={handleUpdateUsersMovies} />} />
             <Route path="/profile" element={
               <ProtectedRouteElement
                 element={Profile}
@@ -188,7 +192,7 @@ function App() {
             } />
             <Route path="/*" element={<Result404 />} />
           </Routes>
-          {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' ? <Footer /> : ''}
+          {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' || pathname === '/movies-explorer-frontend' ? <Footer /> : ''}
 
           <PopupMenu isPopupRender={isProfileMenuActive} closePopup={closePopup} />
           <InfoTooltip isOpen={isPopupInfoTooltipOpen} onClose={closePopup} isPopupCorret={isPopupCorret} />
