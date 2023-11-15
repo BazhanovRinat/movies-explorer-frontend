@@ -167,7 +167,7 @@ function App() {
             <Header loggedIn={loggedIn} openPopupProfile={openPopupProfile} /> : ''}
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/movies-explorer-frontend/" element={<Main />} />
+            <Route path="/movies-explorer-frontend" element={<Main />} />
             <Route path="/sign-up" element={<Register onRegister={handleRegister} />} />
             <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
             <Route path="/movies" element={<ProtectedRouteElement element={Movies} 
