@@ -9,7 +9,7 @@ function Header(props) {
 
 
     return (
-        <header className={`header ${pathname === '/' ? "" : "header_white"} ${pathname === "/404" ||
+        <header className={`header ${pathname === '/' || pathname === '/movies-explorer-frontend/' ? "" : "header_white"} ${pathname === "/404" ||
             pathname === "/sign-up" ||
             pathname === "/*" ||
             pathname === "/sign-in" ? "header_display-none" : ""}`}>

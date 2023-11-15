@@ -167,7 +167,7 @@ function App() {
             || pathname === '/movies'
             || pathname === '/saved-movies'
             || pathname === '/profile'
-            || pathname === '/movies-explorer-frontend' ?
+            || pathname === '/movies-explorer-frontend/' ?
             <Header loggedIn={loggedIn} openPopupProfile={openPopupProfile} /> : ''}
           <Routes>
             <Route path="/" element={<Main />} />
@@ -192,7 +192,7 @@ function App() {
             } />
             <Route path="/*" element={<Result404 />} />
           </Routes>
-          {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' || pathname === '/movies-explorer-frontend' ? <Footer /> : ''}
+          {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' || pathname === '/movies-explorer-frontend/' ? <Footer /> : ''}
 
           <PopupMenu isPopupRender={isProfileMenuActive} closePopup={closePopup} />
           <InfoTooltip isOpen={isPopupInfoTooltipOpen} onClose={closePopup} isPopupCorret={isPopupCorret} />
